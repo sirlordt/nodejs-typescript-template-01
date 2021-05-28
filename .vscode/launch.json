@@ -1,0 +1,87 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "preLaunchTask": "npm: copy:resource tsc: build - tsconfig.json",
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Main Process (Main)",
+      //"program": "${workspaceFolder}/src/main.ts",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "start:debug"],
+      //"outputCapture": "std",
+      "preLaunchTask": "build",
+      "port": 9229,
+      //"autoAttachChildProcesses": true,
+      "outFiles": [
+        "${workspaceFolder}/build/**/*.js"
+      ],
+      "trace": true
+    },
+    {
+      "type": "node",
+      "request":"attach",
+      "name": "Debug Main Process (Fork 01)",
+      "processId": "${command:PickProcess}"
+    },
+    {
+      "type": "node",
+      "request":"attach",
+      "name": "Debug Main Process (Fork 02)",
+      "processId": "${command:PickProcess}"
+    },
+    {
+      "type": "node",
+      "request":"attach",
+      "name": "Debug Main Process (Fork 03)",
+      "processId": "${command:PickProcess}"
+    },
+    {
+      "type": "node",
+      "request":"attach",
+      "name": "Debug Main Process (Fork 04)",
+      "processId": "${command:PickProcess}"
+    },
+    {
+      "type": "node",
+      "request":"attach",
+      "name": "Debug Main Process (Fork 05)",
+      "processId": "${command:PickProcess}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest All",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": ["--runInBand"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "outputCapture": "std",
+      "windows": {
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest Current File",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": [
+        "${fileBasenameNoExtension}",
+        "--config",
+        "jest.config.js"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "outputCapture": "std",
+      "windows": {
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+      }
+    }
+  ]
+}
